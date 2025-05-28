@@ -19,13 +19,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/corrida', [CorridaController::class, 'index'])->name('corridaindex');
-    Route::get('/corridas/{corrida}', [CorridaController::class, 'show'])->name('corridausers.show');
-    Route::get('/corrida/create', [CorridaController::class, 'create'])->name('corridacreate');
-    Route::post('/corridas', [CorridaController::class, 'store'])->name('corridastore');
-    Route::get('/corrida/{corrida}/edit', [CorridaController::class, 'edit'])->name('corridaedit');
-    Route::put('/corrida/{corrida}', [CorridaController::class, 'update'])->name('corridaupdate');
-    Route::delete('/corridas/{corrida}', [CorridaController::class, 'destroy'])->name('corridadelete');
+Route::resource('corrida', CorridaController::class);
 });
 
 require __DIR__.'/auth.php';

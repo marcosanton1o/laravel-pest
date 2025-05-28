@@ -43,7 +43,7 @@ $cargo = Auth::user()->cargo;
                                     <span class="sr-only">Close modal</span>
                                 </button>
                             </div>
-                            <form class="mt-5" action="{{ route('corridastore') }}" method="post">
+                            <form class="mt-5" action="{{ route('corrida.store') }}" method="post">
                                 @csrf
 
                                 <div>
@@ -93,7 +93,7 @@ $cargo = Auth::user()->cargo;
 
                                                     </button>
                                                 </div>
-                                                <form action="{{ route('corridaupdate', $corrida->id_corrida) }}" method="post">
+                                                <form action="{{ route('corrida.update', $corrida->id_corrida) }}" method="post">
                                                     @csrf
                                                     <input type="hidden" name="_method" value="PUT">
                                                 <div>
@@ -113,7 +113,7 @@ $cargo = Auth::user()->cargo;
                                                     <x-input-error :messages="$errors->get('data')" class="mt-2" />
                                                 </div>
                                                 <div class="flex items-center justify-end mt-4">
-                                                    <a class="underline text-sm text-white hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('corridaindex') }}">
+                                                    <a class="underline text-sm text-white hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('corrida.index') }}">
                                                         {{ __('Gostaria de voltar?') }}
                                                     </a>
 
@@ -148,7 +148,7 @@ $cargo = Auth::user()->cargo;
                                                         </svg>
                                                         <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Tem certeza que quer apagar?</h3>
                                                         <div class="flex justify-center">
-                                                            <form action="{{ route('corridadelete', ['corrida' => $corrida->id_corrida]) }}" method="post">
+                                                            <form action="{{ route('corrida.destroy', ['corrida' => $corrida->id_corrida]) }}" method="post">
                                                                 @csrf
                                                                 <input type="hidden" name="_method" value="DELETE">
                                                                 <button type="submit" class="px-4 py-2 text-white bg-red-600 rounded ">Apagar</button>

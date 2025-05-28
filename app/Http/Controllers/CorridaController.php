@@ -38,7 +38,7 @@ class CorridaController extends Controller
             'nome_cliente' => $request->input('nome_cliente'),
         ]);
 
-        return redirect()->route('corridaindex')->with('criado', 'im');
+        return redirect()->route('corrida.index')->with('criado', 'im');
     }
     public function show($id)
 
@@ -55,14 +55,13 @@ public function update(UpdateCorridaRequest $request, string $id)
 {
     $updated=$this->corrida->where('id_corrida',$id)->update($request->except(['_token','_method']));
 
-    return redirect()->route('corridaindex')->with('editado', 'm');
+    return redirect()->route('corrida.index')->with('editado', 'm');
 }
 
 
-    public function destroy(string $id)
-    {
-        $this->corrida->where('id_corrida', $id)->delete();
-
-    return redirect()->route('corridaindex')->with('apagado','g');;
-    }
+    public function destroy(Corrida $corrida)
+{
+    $corrida->delete();
+    return redirect()->route('corrida.index')->with('apagado', 'g');
+}
 }
