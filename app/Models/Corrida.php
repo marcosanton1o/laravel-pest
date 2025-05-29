@@ -11,7 +11,7 @@ class Corrida extends Model
 {
     use HasFactory,  Notifiable;
 
-    protected $table = 'corrida';
+    protected $table = 'corridas';
     protected $primaryKey = 'id_corrida';
     public $incrementing = true;
     protected $keyType = 'int';

@@ -10,7 +10,7 @@ return new class extends Migration
 
     {
 
-        Schema::create('corrida', function (Blueprint $table) {
+Schema::create('corridas', function (Blueprint $table) {
     $table->id('id_corrida');
     $table->string('nome_cliente');
     $table->decimal('preco', 8, 2);
