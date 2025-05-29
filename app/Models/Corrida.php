@@ -11,8 +11,10 @@ class Corrida extends Model
 {
     use HasFactory,  Notifiable;
 
-    protected $table = 'Corrida';
+    protected $table = 'corrida';
     protected $primaryKey = 'id_corrida';
+    public $incrementing = true;
+    protected $keyType = 'int';
 
     protected $fillable = [
         'id_corrida',

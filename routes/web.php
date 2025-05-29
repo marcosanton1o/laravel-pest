@@ -19,7 +19,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-Route::resource('corrida', CorridaController::class);
+    Route::resource('corrida', CorridaController::class);
 });
+
 
 require __DIR__.'/auth.php';

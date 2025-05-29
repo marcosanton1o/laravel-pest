@@ -2,21 +2,26 @@
 
 use App\Models\Corrida;
 use App\Models\User;
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-uses(RefreshDatabase::class);
+class CorridaTest extends TestCase
+{
 
-test('returns a successful response', function () {
+    use RefreshDatabase;
+
+public function test_returns_a_successful_response()
+{
     $user = User::factory()->create();
     $this->actingAs($user);
 
     $response = $this->get('/corrida');
 
     $response->assertStatus(200);
-    $response->assertStatus(200);
-});
+}
 
-test('returns a successful response of create', function () {
+public function test_returns_a_successful_response_create()
+{
     $user = User::factory()->create();
     $this->actingAs($user);
 
@@ -30,46 +35,53 @@ test('returns a successful response of create', function () {
 
     $response->assertStatus(200);
     $response->assertDontSee(__('no corridas found'));
-});
+}
 
-test('can update an existing corrida', function () {
+public function test_returns_a_successful_response_update()
+{
     $user = User::factory()->create();
     $this->actingAs($user);
 
     $corrida = Corrida::create([
-        'nome_cliente' => 'Antigo Nome',
-        'preco' => 80,
-        'data' => '2025-05-27',
+        'nome_cliente' => 'João Teste',
+        'preco' => 90,
+        'data' => '2025-05-28',
     ]);
 
-    $response = $this->put("/corrida/{$corrida->id}", [
+    $response = $this->put("/corrida/{$corrida->id_corrida}", [
         'nome_cliente' => 'Novo Nome',
-        'preco' => 100,
+        'preco' => 75,
         'data' => '2025-06-01',
     ]);
 
     $response->assertRedirect('/corrida');
 
     $this->assertDatabaseHas('corridas', [
-        'id' => $corrida->id,
+        'id_corrida' => $corrida->id_corrida,
         'nome_cliente' => 'Novo Nome',
-        'preco' => 100,
+        'preco' => 75,
         'data' => '2025-06-01',
     ]);
-});
+}
 
-test('can delete a corrida', function () {
-    $user = \App\Models\User::factory()->create();
+public function test_returns_a_successful_response_delete()
+{
+    $user = User::factory()->create();
     $this->actingAs($user);
 
-    $corrida = \App\Models\Corrida::create([
-        'nome_cliente' => 'A Ser Deletado',
-        'preco' => 70,
-        'data' => '2025-05-25',
+    $corrida = Corrida::create([
+        'nome_cliente' => 'Novo Nome',
+        'preco' => 75,
+        'data' => '2025-06-01',
     ]);
 
-    $response = $this->delete("/corrida/{$corrida->id}");
+    $response = $this->delete("/corrida/{$corrida->id_corrida}");
 
     $response->assertRedirect('/corrida');
-    $this->assertDatabaseMissing('corridas', ['id' => $corrida->id]);
-});
+
+    $this->assertDatabaseMissing('corridas', [
+        'id_corrida' => $corrida->id_corrida,
+    ]);
+}
+
+};

@@ -10,16 +10,13 @@ return new class extends Migration
 
     {
 
-        Schema::create('Corrida', function (Blueprint $table) {
-
-            $table->id('id_corrida');
-            $table->dateTime('data');
-            $table->decimal('preco', 10, 2);
-            $table->string('nome_cliente', 150);
-
-            $table->timestamps();
-
-        });
+        Schema::create('corrida', function (Blueprint $table) {
+    $table->id('id_corrida');
+    $table->string('nome_cliente');
+    $table->decimal('preco', 8, 2);
+    $table->date('data');
+    $table->timestamps();
+});
 
     }
 
@@ -28,7 +25,7 @@ return new class extends Migration
 
     {
 
-        Schema::dropIfExists('Corrida');
+        Schema::dropIfExists('corrida');
 
     }
 

@@ -51,9 +51,9 @@ class CorridaController extends Controller
     return view('corridas_past.Editar', ['corrida' => $corrida]);
 }
 
-public function update(UpdateCorridaRequest $request, string $id)
+public function update(Corrida $corrida, UpdateCorridaRequest $request)
 {
-    $updated=$this->corrida->where('id_corrida',$id)->update($request->except(['_token','_method']));
+    $corrida->update($request->except(['_token', '_method']));
 
     return redirect()->route('corrida.index')->with('editado', 'm');
 }
@@ -62,6 +62,6 @@ public function update(UpdateCorridaRequest $request, string $id)
     public function destroy(Corrida $corrida)
 {
     $corrida->delete();
-    return redirect()->route('corrida.index')->with('apagado', 'g');
+    return redirect()->route('corrida.index');
 }
 }
