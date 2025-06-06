@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Validator;
 
 it('valida os campos obrigatórios da StoreCorridaRequest', function () {
     $dados = [
-        // dados ausentes para forçar falha
     ];
 
     $request = new StoreCorridaRequest();

@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Validator;
 
 it('valida os campos obrigatórios da UpdateCorridaRequest', function () {
     $dados = [
-        // campos ausentes para forçar erro
     ];
 
     $request = new UpdateCorridaRequest();
